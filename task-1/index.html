@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue-task-1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="v-tooltip.css">
+
+    <style>
+        .btn-copy-surname {
+            min-width: 110px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col">
+                    <h2 class="text-center">Список пользователей</h2>
+                </div>
+            </div>
+            <div class="row justify-content-between align-items-center py-2">
+                <div class="col col-6">
+                    Всего пользователей: {{ getNumberOfUsers() }}
+                </div>
+                <div class="col col-6 text-right">
+                    <button type="button" class="btn btn-outline-success btn-sm" v-tooltip.top-start="showTooltip"
+                        v-on:click="toggleShowList">{{ showBtnText }}</button>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead class="table-success">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col">Отчество</th>
+                        </tr>
+                    </thead>
+                    <tbody v-show="showList">
+                        <tr v-for="user in users" :key="user.id">
+                            <th scope="row" style="max-width: 100px">{{ user.id }}</th>
+                            <td class="align-middle">
+                                <img alt="" class="rounded-circle w-25" v-bind:src="user.icon_url || defaultImgUrl">
+                            </td>
+                            <td class="align-middle">{{ user.name }}</td>
+                            <td class="align-middle">
+                                <div class="row justify-content-between">
+                                    <div class="col">{{ user.surname }}</div>
+                                    <div class="col">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm btn-copy-surname"
+                                            v-copy="user.surname"
+                                            v-on:click="handleCopied($event)"
+                                            v-tooltip.top-start="copyTooltip">{{ copyBtnText }}</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">{{ user.patronimic }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="users-data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+    <script src="https://unpkg.com/v-copy"></script>
+    <script src="https://unpkg.com/v-tooltip"></script>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    users: [],
+                    showBtnText: 'Скрыть список',
+                    showList: true,
+                    showTooltip: 'Показать/скрыть список',
+                    copyTooltip: 'Скопировать фамилию в буфер',
+                    copyBtnText: 'копировать',
+                    defaultImgUrl: 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+                }
+            },
+            mounted: function () {
+                this.users = usersData
+            },
+            methods: {
+                toggleShowList: function () {
+                    this.showList = !this.showList
+                    this.showBtnText = (this.showList) ? 'Скрыть список' : 'Показать список'
+                },
+                getNumberOfUsers: function () {
+                    return this.users.length
+                },
+                handleCopied: function (event) {
+                    event.target.innerHTML = 'скопированно'
+                    setTimeout(function () {
+                        event.target.innerHTML = 'копировать'
+                    }, 1500)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
