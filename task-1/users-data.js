@@ -21,7 +21,7 @@ var usersData = [{
     "name": "Анатолий",
     "surname": "Тихонов",
     "patronimic": "Викторович",
-    // "icon_url": "http://randomuser.ru/images/men/med/12.jpg"
+    "icon_url": "" // http://randomuser.ru/images/men/med/12.jpg
 }, {
     "id": 5,
     "name": "Кира",
