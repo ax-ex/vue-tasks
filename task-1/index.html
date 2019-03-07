@@ -12,6 +12,10 @@
         .btn-copy-surname {
             min-width: 110px;
         }
+
+        tbody .tb-first-col {
+            max-width: 100px
+        }
     </style>
 </head>
 
@@ -45,7 +49,7 @@
                     </thead>
                     <tbody v-show="showList">
                         <tr v-for="user in users" :key="user.id">
-                            <th scope="row" style="max-width: 100px">{{ user.id }}</th>
+                            <th class="tb-first-col" scope="row">{{ user.id }}</th>
                             <td class="align-middle">
                                 <img alt="" class="rounded-circle w-25" v-bind:src="user.icon_url || defaultImgUrl">
                             </td>
@@ -100,14 +104,14 @@
                     this.showBtnText = (this.showList) ? 'Скрыть список' : 'Показать список'
                 },
                 handleCopied: function (event) {
-                    event.target.innerHTML = 'скопированно'
+                    event.target.innerText = 'скопированно'
                     setTimeout(function () {
-                        event.target.innerHTML = 'копировать'
+                        event.target.innerText = 'копировать'
                     }, 1500)
                 }
             },
             filters: {
-                toUpperCase: function(value) {
+                toUpperCase: function (value) {
                     if (!value) return
                     value = value.toString()
                     return value.toUpperCase()
