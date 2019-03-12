@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue-task-1-2</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="container">
+            <div class="row py-3">
+                <div class="col">
+                    <h2 class="text-center">Редактирование пользователя</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <user-edit v-bind:user="userData"></user-edit>
+            </div>
+        </div>
+    </div>
+
+    <template id="user-edit">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6" v-if="user.email">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
+                        v-bind:value="user.email">
+                </div>
+                <div class="form-group col-md-6" v-if="user.name">
+                    <label for="inputName4">Name</label>
+                    <input type="text" class="form-control" id="inputName4" placeholder="Name" v-bind:value="user.name">
+                </div>
+            </div>
+            <div class="form-group" v-if="addressArr.street">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                    v-bind:value="addressArr.street">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6" v-if="addressArr.city">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity" v-bind:value="addressArr.city">
+                </div>
+                <div class="form-group col-md-2" v-if="addressArr.zipcode">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" v-bind:value="addressArr.zipcode">
+                </div>
+            </div>
+        </form>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue-async-computed@3.6.1"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        //Компонент - форма редактирования данных пользователя
+        var UserEdit = {
+            template: '#user-edit',
+            props: {
+                user: {
+                    type: null,
+                    required: false
+                }
+            },
+            computed: {
+                addressArr: function () {
+                    return this.user.address
+                }
+            }
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                'user-edit': UserEdit
+            },
+            data: function () {
+                return {
+                    userData: [],
+                    userId: 1
+                }
+            },
+            mounted: function () {
+                axios.get('http://jsonplaceholder.typicode.com/users/' + this.userId)
+                    .then(response => {
+                        this.userData = response.data
+                    })
+            }
+            // asyncComputed: {
+            //     userInfo: function () {
+            //         return Vue.http.get('http://jsonplaceholder.typicode.com/users/' + this.userId)
+            //             .then(response => {
+            //                 console.log(response.data);
+            //             })
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>
