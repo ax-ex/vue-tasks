@@ -31,7 +31,6 @@
                     <h2 class="text-center">Список пользователей</h2>
                 </div>
             </div>
-            <!-- <users-table v-bind:users="list"></users-table> -->
             <users-table v-bind:users="oddList"></users-table>
         </div>
     </div>
@@ -97,12 +96,12 @@
             `,
             props: {
                 surname: {
-                    type: String
+                    type: String,
+                    default: ''
                 }
             },
             data: function () {
                 return {
-                    btnText: 'копировать',
                     textCopied: false,
                     copySurnameTooltip: 'Скопировать фамилию в буфер'
                 }
@@ -177,7 +176,7 @@
                 list: 'listLoadAlert'
             },
             mounted: function () {
-                loadUserData()
+                this.loadUserData()
             },
             computed: {
                 oddList: function () {

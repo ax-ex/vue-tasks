@@ -17,7 +17,8 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <user-edit v-bind:user="userData"></user-edit>
+                <user-edit v-bind:user-info="userData" v-if="userData"></user-edit>
+                <p v-else>Загрузка данных пользователя...</p>
             </div>
         </div>
     </div>
@@ -25,52 +26,49 @@
     <template id="user-edit">
         <form>
             <div class="form-row">
-                <div class="form-group col-md-6" v-if="user.email">
+                <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
-                        v-bind:value="user.email">
+                        v-bind:value="userInfo.email">
                 </div>
-                <div class="form-group col-md-6" v-if="user.name">
+                <div class="form-group col-md-6">
                     <label for="inputName4">Name</label>
-                    <input type="text" class="form-control" id="inputName4" placeholder="Name" v-bind:value="user.name">
+                    <input type="text" class="form-control" id="inputName4" placeholder="Name"
+                        v-bind:value="userInfo.name">
                 </div>
             </div>
-            <div class="form-group" v-if="addressArr.street">
+            <div class="form-group" v-if="userInfo.address">
                 <label for="inputAddress">Address</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
-                    v-bind:value="addressArr.street">
+                    v-bind:value="userInfo.address.street">
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6" v-if="addressArr.city">
+                <div class="form-group col-md-6" v-if="userInfo.address">
                     <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" v-bind:value="addressArr.city">
+                    <input type="text" class="form-control" id="inputCity" v-bind:value="userInfo.address.city">
                 </div>
-                <div class="form-group col-md-2" v-if="addressArr.zipcode">
+                <div class="form-group col-md-2" v-if="userInfo.address">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip" v-bind:value="addressArr.zipcode">
+                    <input type="text" class="form-control" id="inputZip" v-bind:value="userInfo.address.zipcode">
                 </div>
             </div>
         </form>
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
-    <!-- <script src="https://unpkg.com/vue-async-computed@3.6.1"></script> -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/vue-async-computed@3.6.1"></script>
 
     <script>
+        Vue.use(AsyncComputed)
 
         //Компонент - форма редактирования данных пользователя
         var UserEdit = {
             template: '#user-edit',
             props: {
-                user: {
-                    type: null,
-                    required: false
-                }
-            },
-            computed: {
-                addressArr: function () {
-                    return this.user.address
+                userInfo: {
+                    type: [Array, Object],
+                    required: true
                 }
             }
         }
@@ -86,20 +84,14 @@
                     userId: 1
                 }
             },
-            mounted: function () {
-                axios.get('http://jsonplaceholder.typicode.com/users/' + this.userId)
-                    .then(response => {
-                        this.userData = response.data
-                    })
+            asyncComputed: {
+                loadUser() {
+                    return Vue.http.get('http://jsonplaceholder.typicode.com/users/' + this.userId)
+                        .then(response => {
+                            this.userData = response.data
+                        })
+                }
             }
-            // asyncComputed: {
-            //     userInfo: function () {
-            //         return Vue.http.get('http://jsonplaceholder.typicode.com/users/' + this.userId)
-            //             .then(response => {
-            //                 console.log(response.data);
-            //             })
-            //     }
-            // }
         })
     </script>
 </body>
