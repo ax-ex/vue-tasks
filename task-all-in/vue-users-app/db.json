@@ -1,0 +1,136 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/women/med/77.jpg",
+      "age": 36,
+      "accessLevel": "guest",
+      "name": "Graves",
+      "surname": "Lindsay",
+      "phone": "+7 (810) 578-3871",
+      "address": "132 Hanson Place, Staples, Indiana, 4683",
+      "registered": "21.01.2017"
+    },
+    {
+      "id": 1,
+      "isActive": false,
+      "icon_url": "http://randomuser.ru/images/men/med/48.jpg",
+      "age": 39,
+      "accessLevel": "guest",
+      "name": "Lindsay",
+      "surname": "Stanton",
+      "phone": "+7 (822) 514-3366",
+      "address": "276 Seton Place, Harrodsburg, Maryland, 5198",
+      "registered": "24.04.2017"
+    },
+    {
+      "id": 2,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/women/med/61.jpg",
+      "age": 28,
+      "accessLevel": "guest",
+      "name": "Nicholson",
+      "surname": "Burns",
+      "phone": "+7 (805) 517-3711",
+      "address": "662 Quentin Road, Muir, Massachusetts, 6744",
+      "registered": "16.08.2015"
+    },
+    {
+      "id": 3,
+      "isActive": false,
+      "icon_url": "http://randomuser.ru/images/women/med/37.jpg",
+      "age": 28,
+      "accessLevel": "admin",
+      "name": "Marion",
+      "surname": "Dennis",
+      "phone": "+7 (971) 514-3930",
+      "address": "412 Kermit Place, Wakarusa, Mississippi, 8116",
+      "registered": "25.07.2014"
+    },
+    {
+      "id": 4,
+      "isActive": false,
+      "icon_url": "http://randomuser.ru/images/men/med/6.jpg",
+      "age": 40,
+      "accessLevel": "user",
+      "name": "Cathleen",
+      "surname": "Woodard",
+      "phone": "+7 (975) 505-2083",
+      "address": "773 Hillel Place, Rockingham, North Carolina, 6680",
+      "registered": "25.01.2014"
+    },
+    {
+      "id": 5,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/women/med/62.jpg",
+      "age": 35,
+      "accessLevel": "user",
+      "name": "Lynch",
+      "surname": "Sutton",
+      "phone": "+7 (924) 493-2028",
+      "address": "891 Williams Court, Blandburg, Oregon, 6451",
+      "registered": "25.12.2016"
+    },
+    {
+      "id": 6,
+      "isActive": false,
+      "icon_url": "http://randomuser.ru/images/women/med/43.jpg",
+      "age": 26,
+      "accessLevel": "guest",
+      "name": "Bonnie",
+      "surname": "Foley",
+      "phone": "+7 (972) 464-3582",
+      "address": "857 Hutchinson Court, Columbus, Vermont, 1151",
+      "registered": "15.04.2016"
+    },
+    {
+      "id": 7,
+      "isActive": false,
+      "icon_url": "http://randomuser.ru/images/women/med/45.jpg",
+      "age": 24,
+      "accessLevel": "guest",
+      "name": "Potts",
+      "surname": "Becker",
+      "phone": "+7 (821) 442-3476",
+      "address": "130 Veterans Avenue, Fillmore, Michigan, 1849",
+      "registered": "16.02.2016"
+    },
+    {
+      "id": 8,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/women/med/17.jpg",
+      "age": 35,
+      "accessLevel": "guest",
+      "name": "Blanche",
+      "surname": "Dominguez",
+      "phone": "+7 (896) 402-2914",
+      "address": "342 Sunnyside Court, Ronco, Wisconsin, 7971",
+      "registered": "22.01.2014"
+    },
+    {
+      "id": 9,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/men/med/21.jpg",
+      "age": 27,
+      "accessLevel": "user",
+      "name": "Whitney",
+      "surname": "Aguilar",
+      "phone": "+7 (962) 437-2659",
+      "address": "871 Concord Street, Leland, Ohio, 3635",
+      "registered": "11.05.2014"
+    },
+    {
+      "id": 10,
+      "isActive": true,
+      "icon_url": "http://randomuser.ru/images/men/med/1.jpg",
+      "age": 28,
+      "accessLevel": "admin",
+      "name": "Elsa",
+      "surname": "Oneal",
+      "phone": "+7 (921) 550-2447",
+      "address": "233 Metrotech Courtr, Campo, Georgia, 6439",
+      "registered": "06.07.2015"
+    }
+  ]
+}

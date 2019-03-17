@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <img class="logo" alt="Vue logo" src="../assets/logo.png" @click="redirect" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  methods: {
+    redirect() {
+      this.$router.push('/users')
+    }
   }
 }
 </script>
+
+<style scoped>
+.home {
+  text-align: center;
+}
+.logo {
+  cursor: pointer;
+}
+</style>
